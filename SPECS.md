@@ -9,5 +9,5 @@
 |6.|The model finds a match only if its presence in the text is delimited by string boundary or any punctuation.|Word: `'foo'` Text: `'Foo.bar()'`|`true`|_This test addresses the additional criteria to finding a delimiter._|
 |7.|The model identifies character positions (zero-indexed) within the text for a (first) match.|Word: `'foo'` Text: `'bar baz foo'`|Start: `8` End: `10`|_This behavior gets us closer to determining what is left to be searched through._|
 |8.|The model identifies a string without a match as leaving an empty string to be searched.|Word: `'foo'` Text: `'bar baz'`|Tail: `''`|_This test verifies that the subroutine reduces a string with no matches to the output in Spec 1._|
-|9.|The model produces the remaining text following the first match.|Word: `'foo'` Text: `'foo bar foo'`|Tail:  `' bar foo'`|_This behavior gives us a smaller input to find another match in._|
+|9.|The model produces the remaining text following the first match.|Word: `'foo'` Text: `'foo bar foo'`|Tail: `' bar foo'`|_This behavior gives us a smaller input to find another match in._|
 |10.|The model counts the number of times the word occurs in the text.|Word: `'foo'` Text: `'foo bar.Foo'`|Frequency: `2`|_This verifies that the program counts multiple occurrences._|
