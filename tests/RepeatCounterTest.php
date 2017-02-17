@@ -14,7 +14,7 @@ class RepeatCounterTest extends PHPUnit_Framework_TestCase
         $result = $test_RepeatCounter->CountRepeats($word, $text);
 
         //Assert
-        $this->assertSame(false, $result);
+        $this->assertSame(false, ($result == 0 ? false : true));
     }
 
     function test_CountRepeats_equivalentStrings()
@@ -28,7 +28,7 @@ class RepeatCounterTest extends PHPUnit_Framework_TestCase
         $result = $test_RepeatCounter->CountRepeats($word, $text);
 
         //Assert
-        $this->assertSame(true, $result);
+        $this->assertSame(true, ($result == 1 ? true : false));
     }
 
     function test_CountRepeats_caseInsensitive()
@@ -42,7 +42,7 @@ class RepeatCounterTest extends PHPUnit_Framework_TestCase
         $result = $test_RepeatCounter->CountRepeats($word, $text);
 
         //Assert
-        $this->assertSame(true, $result);
+        $this->assertSame(true, ($result == 1 ? true : false));
     }
 
     function test_CountRepeats_embedded()
@@ -56,7 +56,7 @@ class RepeatCounterTest extends PHPUnit_Framework_TestCase
         $result = $test_RepeatCounter->CountRepeats($word, $text);
 
         //Assert
-        $this->assertSame(true, $result);
+        $this->assertSame(true, ($result == 1 ? true : false));
     }
 
     function test_CountRepeats_requiresWhitespace()
@@ -70,7 +70,7 @@ class RepeatCounterTest extends PHPUnit_Framework_TestCase
         $result = $test_RepeatCounter->CountRepeats($word, $text);
 
         //Assert
-        $this->assertSame(false, $result);
+        $this->assertSame(false, ($result == 0 ? false : true));
     }
 
     function test_CountRepeats_requiresAnyPunctuation()
@@ -84,7 +84,21 @@ class RepeatCounterTest extends PHPUnit_Framework_TestCase
         $result = $test_RepeatCounter->CountRepeats($word, $text);
 
         //Assert
-        $this->assertSame(true, $result);
+        $this->assertSame(true, ($result == 1 ? true : false));
+    }
+
+    function test_CountRepeats_counts()
+    {
+        //Arrange
+        $test_RepeatCounter = new RepeatCounter;
+        $word = 'foo';
+        $text = 'foo bar.Foo';
+
+        //Act
+        $result = $test_RepeatCounter->CountRepeats($word, $text);
+
+        //Assert
+        $this->assertSame(2, $result);
     }
 }
 ?>

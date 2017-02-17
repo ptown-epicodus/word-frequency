@@ -41,32 +41,27 @@ class RepeatCounter
 
     function CountRepeats($word, $sample)
     {
-        $beggining_of_word = true; // Flags that we are at string boundary
         $word = strtolower($word);
         $sample = strtolower($sample);
 
+        $repeat_count = 0;
 
         for ($i = 0; $i < strlen($sample); $i++) {
             $sample_char = $sample{$i};
-
-            if ($beggining_of_word) {
-              if ($word{0} == $sample_char) {
-                  if ($this->recursivelyMatchRestOfWord(substr($word, 1), substr($sample, $i + 1)))
-                      return true;
-              }
-            }
-            $beggining_of_word = false;
-            while (! $this->isDelimiter($sample_char)) {
-              $i++;
-              $sample_char = $sample{$i};
-            }
-
             if ($word{0} == $sample_char) {
-                if ($this->recursivelyMatchRestOfWord(substr($word, 1), substr($sample, $i + 1)))
-                    return true;
+                if ($this->recursivelyMatchRestOfWord(substr($word, 1), substr($sample, $i + 1))) {
+                    $repeat_count++;
+                    $i += strlen($word) - 1;
+                    continue;
+                }
+            }
+            while (! $this->isDelimiter($sample_char)) {
+                $i++;
+                $sample_char = $sample{$i};
             }
         }
-        return false;
+
+        return $repeat_count;
     }
 
     function recursivelyMatchRestOfWord($word, $sample)
