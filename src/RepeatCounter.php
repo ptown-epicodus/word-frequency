@@ -3,7 +3,9 @@ class RepeatCounter
 {
     function CountRepeats($word, $sample)
     {
-        return false;
+        if ($sample == '')
+            return false;
+        return $word == $sample;
     }
 }
 ?>
