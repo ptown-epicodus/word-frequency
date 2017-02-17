@@ -58,5 +58,19 @@ class RepeatCounterTest extends PHPUnit_Framework_TestCase
         //Assert
         $this->assertSame(true, $result);
     }
+
+    function test_CountRepeats_requiresWhitespace()
+    {
+        //Arrange
+        $test_RepeatCounter = new RepeatCounter;
+        $word = 'foo';
+        $text = 'foobar';
+
+        //Act
+        $result = $test_RepeatCounter->CountRepeats($word, $text);
+
+        //Assert
+        $this->assertSame(false, $result);
+    }
 }
 ?>
