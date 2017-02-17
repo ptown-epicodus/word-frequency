@@ -1,10 +1,42 @@
 <?php
 class RepeatCounter
 {
-    public $whitespace = [
+    public $punctuation = [
         ' ',
         "\t",
-        "\n"
+        "\n",
+        '!',
+        '@',
+        '#',
+        '$',
+        '%',
+        '^',
+        '&',
+        '*',
+        '(',
+        ')',
+        '{',
+        '}',
+        '[',
+        ']',
+        '\\',
+        '|',
+        '/',
+        '?',
+        ',',
+        '.',
+        '<',
+        '>',
+        '`',
+        '~',
+        '-',
+        '_',
+        '=',
+        '+',
+        ';',
+        ':',
+        '\'',
+        '"',
     ];  // PHP < 5.6 does not allow class constants to store arrays
 
     function CountRepeats($word, $sample)
@@ -24,7 +56,7 @@ class RepeatCounter
               }
             }
             $beggining_of_word = false;
-            while (! $this->isDelimitter($sample_char)) {
+            while (! $this->isDelimiter($sample_char)) {
               $i++;
               $sample_char = $sample{$i};
             }
@@ -39,7 +71,7 @@ class RepeatCounter
 
     function recursivelyMatchRestOfWord($word, $sample)
     {
-        if ($word == '' && $this->isDelimitter($sample{0}))
+        if ($word == '' && $this->isDelimiter($sample{0}))
             return true;
         if ($sample == '')
             return false;
@@ -48,11 +80,11 @@ class RepeatCounter
         return $this->recursivelyMatchRestOfWord(substr($word, 1), substr($sample, 1));
     }
 
-    function isDelimitter($letter)
+    function isDelimiter($letter)
     {
         if ($letter == '')
             return true;
-        return in_array($letter{0}, $this->whitespace);
+        return in_array($letter{0}, $this->punctuation);
     }
 }
 ?>
