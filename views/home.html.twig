@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Word frequency</title>
+  </head>
+  <body>
+    <h1>Word Frequency</h1>
+    {% block content %}
+      <form action='/result' method='post'>
+        <label for='word'>Word:</label>
+        <input name='word' type='text'>
+
+        <label for='sample-text'>
+        <textarea name='sample-text'>
+        </textarea>
+
+        <button type='submit'>Count</button>
+      </form>
+    {% endblock %}
+  </body>
+</html>
