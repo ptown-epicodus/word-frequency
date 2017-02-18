@@ -1,21 +1,31 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link href='css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+    <link href='css/styles.css' rel='stylesheet' type='text/css'>
     <title>Word frequency</title>
   </head>
   <body>
-    <h1>Word Frequency</h1>
-    {% block content %}
-      <form action='/result' method='post'>
-        <label for='word'>Word:</label>
-        <input name='word' type='text'>
+    <div class='container'>
+      <div class='jumbotron'>
+        <h1>Word Frequency</h1>
+      </div>
+      {% block content %}
+        <form action='/result' method='post'>
+          <div class='form-group'>
+            <label for='word'>Word:</label>
+            <input name='word' type='text' class='form-control'>
+          </div>
 
-        <label for='sample-text'>
-        <textarea name='sample-text'>
-        </textarea>
+          <div class='form-group'>
+            <label for='sample-text'>Text</label>
+            <textarea name='sample-text' class='form-control'>
+            </textarea>
+          </div>
 
-        <button type='submit'>Count</button>
-      </form>
-    {% endblock %}
+          <button type='submit' class='btn btn-info'>Count</button>
+        </form>
+      {% endblock %}
+    </div>
   </body>
 </html>
