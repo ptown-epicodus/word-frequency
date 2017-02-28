@@ -57,6 +57,8 @@ class RepeatCounter
             }
             while (! $this->isDelimiter($sample_char)) {
                 $i++;
+                if ($i >= strlen($sample))
+                    break;
                 $sample_char = $sample{$i};
             }
         }
